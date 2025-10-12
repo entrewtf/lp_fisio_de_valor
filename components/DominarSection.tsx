@@ -3,7 +3,7 @@ import { DOMINAR_ITEMS } from '../constants';
 
 const DominarSection: React.FC = () => {
   return (
-    <section className="py-24 px-4 bg-[#fdfcf8]">
+    <section className="py-24 px-4 bg-gray-50">
       <div className="container mx-auto max-w-5xl">
         <div className="text-left mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#514e4a]">O que você vai dominar</h2>

@@ -13,7 +13,7 @@ const PromiseSection: React.FC = () => {
         'Saber negociar com segurança, sem se sentir vendedor.',
     ];
   return (
-    <section className="py-24 px-4 bg-[#f7f2d7]">
+    <section className="py-24 px-4 bg-lime-50">
       <div className="container mx-auto max-w-5xl text-left">
         <h2 className="text-3xl md:text-4xl font-bold text-[#514e4a] mt-2">
           No final dessa mentoria, você vai:

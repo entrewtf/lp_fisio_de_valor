@@ -4,7 +4,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-[#514e4a] text-white py-16 px-4">
       <div className="container mx-auto max-w-5xl text-left">
-        <img src="https://i.ibb.co/L5B7s3Z/logo-fisio-de-valor.png" alt="Fisio de Valor Logo" className="h-20 brightness-0 invert" />
+        <img src="/logo.png" alt="Fisio de Valor Logo" className="h-24 filter invert brightness-0" />
         <h3 className="text-2xl md:text-3xl font-bold mt-6">
           Seu próximo nível profissional começa aqui.
         </h3>

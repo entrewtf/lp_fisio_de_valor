@@ -80,7 +80,7 @@ export const PARA_QUEM_ITEMS: string[] = [
 ];
 
 export const DEPOIMENTO = {
-  quote: "Depois que aprendi a falar certo com o familiar, parei de ouvir ‘tá caro’. Agora escuto: ‘quando podemos começar?’",
+  quote: "Quando eu aprendi a me posicionar e demonstrar, na prática, os resultados que eu alcanço, que deixei de ouvir 'tá caro'. Agora escuto: 'quando podemos começar?'",
 };
 
 export const FAQ_ITEMS: FaqItem[] = [
