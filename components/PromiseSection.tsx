@@ -16,7 +16,7 @@ const PromiseSection: React.FC = () => {
     <section className="py-24 px-4 bg-lime-50">
       <div className="container mx-auto max-w-5xl text-left">
         <h2 className="text-3xl md:text-4xl font-bold text-[#514e4a] mt-2">
-          No final dessa mentoria, você vai:
+          Nesta mentoria, você irá:
         </h2>
          <div className="mt-8 space-y-4">
           {promises.map((promise, index) => (

@@ -7,6 +7,8 @@ const CtaSection: React.FC = () => {
     whatsapp: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -16,13 +18,40 @@ const CtaSection: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // In a real application, you would send this data to a server.
-    // For this example, we'll just log it and show a success message.
-    console.log('Form data submitted:', formData);
-    // This is where you would typically add a tracking event call, e.g., analytics.track('FormSubmitted');
-    setSubmitted(true);
+    setErrorMessage(null);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        const message = typeof payload?.message === 'string' ? payload.message : 'Não foi possível enviar sua inscrição. Tente novamente em instantes.';
+        throw new Error(message);
+      }
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', whatsapp: '' });
+
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          method: 'cta_form',
+        });
+      }
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Não foi possível enviar sua inscrição. Tente novamente.';
+      setErrorMessage(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,6 +75,11 @@ const CtaSection: React.FC = () => {
         ) : (
           <div className="mt-10">
             <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-lg space-y-4 max-w-lg">
+              {errorMessage && (
+                <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                  {errorMessage}
+                </div>
+              )}
               <div>
                 <label htmlFor="name" className="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">Nome Completo</label>
                 <input 
@@ -85,12 +119,17 @@ const CtaSection: React.FC = () => {
               </div>
               <button
                 type="submit"
-                className="w-full flex items-center justify-center bg-[#2c6b67] text-white font-bold py-4 px-8 rounded-lg text-lg hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                disabled={isSubmitting}
+                className={`w-full flex items-center justify-center bg-[#2c6b67] text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all ${
+                  isSubmitting ? 'opacity-60 cursor-not-allowed' : 'hover:bg-opacity-90 transform hover:scale-105'
+                }`}
               >
-                <span>QUERO ME INSCREVER AGORA</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <span>{isSubmitting ? 'Enviando...' : 'QUERO ME INSCREVER AGORA'}</span>
+                {!isSubmitting && (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
+                  </svg>
+                )}
               </button>
             </form>
           </div>

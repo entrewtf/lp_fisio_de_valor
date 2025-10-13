@@ -14,7 +14,7 @@ import FloatingCta from './components/FloatingCta';
 
 const App: React.FC = () => {
   return (
-    <div className="bg-white text-[#514e4a] min-h-screen">
+    <div className="bg-white text-[#514e4a] min-h-screen pb-20 md:pb-0">
       <Header />
       <main>
         <Hero />
