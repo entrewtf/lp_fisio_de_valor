@@ -1,37 +1,39 @@
 import React from 'react';
 
-const CheckIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-teal-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-);
-
 const PromiseSection: React.FC = () => {
-    const promises = [
-        'Ter um posicionamento claro e que comunica valor.',
-        'Ter uma rotina de captação ativa que funciona mesmo sem anúncios.',
-        'Saber negociar com segurança, sem se sentir vendedor.',
-    ];
+  const conquests = [
+    'Ter um posicionamento claro e confiante.',
+    'Construir uma rotina de captação previsível.',
+    'Negociar sem medo, com postura e propósito.',
+  ];
+
   return (
-    <section className="py-24 px-4 bg-lime-50">
-      <div className="container mx-auto max-w-5xl text-left">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#514e4a] mt-2">
-          Nesta mentoria, você irá:
-        </h2>
-         <div className="mt-8 space-y-4">
-          {promises.map((promise, index) => (
-            <div key={index} className="flex items-start">
-              <CheckIcon />
-              <span className="text-gray-700 text-lg">{promise}</span>
+    <section className="py-24 md:py-32 px-4 bg-[#2c6b67] text-white">
+      <div className="container mx-auto max-w-5xl">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          <div className="w-full lg:w-1/2 text-left">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">O que você vai conquistar</h2>
+            <ul className="space-y-4">
+              {conquests.map((item, index) => (
+                <li key={index} className="flex items-start">
+                  <svg className="h-6 w-6 text-[#FFC700] mr-4 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-lg text-teal-100">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="w-full lg:w-1/2">
+            <div className="bg-teal-900/50 p-8 rounded-xl border border-teal-600">
+                <p className="text-xl md:text-2xl text-center italic text-white">
+                  E o melhor: vai ouvir do familiar o que todo fisioterapeuta sonha em ouvir:
+                </p>
+                <p className="mt-4 text-2xl md:text-3xl text-center font-bold text-[#FFC700]">
+                  “Finalmente achei alguém que me passou confiança.”
+                </p>
             </div>
-          ))}
-        </div>
-        <div className="mt-12 border-t border-yellow-400 pt-8">
-            <p className="font-display text-2xl md:text-3xl italic text-gray-700 leading-relaxed">
-            E o melhor: vai ouvir de um familiar o que todo fisioterapeuta sonha em ouvir —
-            <br/>
-            <span className="font-bold text-[#2c6b67] not-italic">“Finalmente achei alguém que me passou confiança.”</span>
-            </p>
+          </div>
         </div>
       </div>
     </section>

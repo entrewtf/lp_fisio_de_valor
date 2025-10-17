@@ -1,30 +1,43 @@
 import React, { useState } from 'react';
 import { FAQ_ITEMS } from '../constants';
+import { FaqItem } from '../types';
 
-const FaqItemComponent: React.FC<{ item: typeof FAQ_ITEMS[0]; isOpen: boolean; onClick: () => void }> = ({ item, isOpen, onClick }) => {
+interface FaqItemProps {
+  item: FaqItem;
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+const FaqItemComponent: React.FC<FaqItemProps> = ({ item, isOpen, onClick }) => {
   return (
-    <div className="border-b border-gray-200">
-      <button
-        onClick={onClick}
-        className="w-full flex justify-between items-center text-left py-5 px-2 focus:outline-none"
-      >
-        <span className="text-lg font-semibold text-[#514e4a]">{item.question}</span>
-        <span className={`transform transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`}>
-           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#2c6b67]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+    <div className="border border-gray-200 bg-white rounded-lg">
+      <dt className="text-lg">
+        <button onClick={onClick} className="flex w-full items-start justify-between text-left text-gray-900 p-6">
+          <span className="font-medium">{item.question}</span>
+          <span className="ml-6 flex h-7 items-center">
+            <svg
+              className={`h-6 w-6 transform transition-transform duration-200 ${isOpen ? '-rotate-180' : 'rotate-0'}`}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
-        </span>
-      </button>
-      <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}
-      >
-        <div className="pb-5 px-2 text-gray-600">
-          <p>{item.answer}</p>
+          </span>
+        </button>
+      </dt>
+      <dd className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+        <div className="pb-6 px-6">
+            <p className="text-base text-gray-600">{item.answer}</p>
         </div>
-      </div>
+      </dd>
     </div>
   );
 };
+
 
 const FaqSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -34,13 +47,16 @@ const FaqSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 px-4 bg-white">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-left text-[#514e4a] mb-12">
-          Perguntas Frequentes
-        </h2>
-        <div className="space-y-2">
-          {FAQ_ITEMS.map((item, index) => (
+    <section className="bg-teal-50 py-24 sm:py-32 px-4">
+      <div className="mx-auto max-w-4xl">
+        <div className="text-left">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">Dúvidas Frequentes</h2>
+          <p className="mt-4 text-lg leading-8 text-gray-600">
+            Tudo o que você precisa saber sobre a mentoria Fisio de Valor.
+          </p>
+        </div>
+        <dl className="mt-10 space-y-4">
+           {FAQ_ITEMS.map((item, index) => (
             <FaqItemComponent
               key={index}
               item={item}
@@ -48,7 +64,7 @@ const FaqSection: React.FC = () => {
               onClick={() => handleClick(index)}
             />
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );

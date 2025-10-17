@@ -1,25 +1,30 @@
 import React from 'react';
 import { PARA_QUEM_ITEMS } from '../constants';
 
-const CheckIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-teal-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-);
-
 const ParaQuemESection: React.FC = () => {
   return (
-    <section className="py-24 px-4 bg-white">
+    <section className="py-24 md:py-32 px-4 bg-teal-50">
       <div className="container mx-auto max-w-5xl">
-        <div className="text-left">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#514e4a] mb-12">Para quem é a Mentoria</h2>
-          <div className="space-y-4">
-            {PARA_QUEM_ITEMS.map((item, index) => (
-              <div key={index} className="flex items-start bg-gray-50 p-4 rounded-lg">
-                <CheckIcon />
-                <span className="text-gray-700 text-lg">{item}</span>
-              </div>
-            ))}
+        <div className="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-16">
+          <div className="w-full md:w-1/2 text-left">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Essa jornada é pra fisioterapeutas que:</h2>
+            <ul className="space-y-4">
+              {PARA_QUEM_ITEMS.map((item, index) => (
+                <li key={index} className="flex items-start">
+                  <svg className="h-6 w-6 text-[#FFC700] mr-4 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-lg text-gray-700">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="w-full md:w-1/2 flex justify-center">
+            <img 
+              src="/audience.png" 
+              alt="Fisioterapeuta atendendo paciente em casa" 
+              className="rounded-lg shadow-xl w-full max-w-md"
+            />
           </div>
         </div>
       </div>

@@ -1,27 +1,26 @@
 import React from 'react';
-import logo from '@/assets/logo.png';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#514e4a] text-white py-16 px-4">
-      <div className="container mx-auto max-w-5xl text-left">
-        <img src={logo} alt="Fisio de Valor Logo" className="h-24 filter invert brightness-0" />
-        <h3 className="text-2xl md:text-3xl font-bold mt-6">
-          Seu próximo nível profissional começa aqui.
-        </h3>
-        <p className="mt-4 text-gray-300">
-          Chega de se sentir perdido(a). É hora de ter um plano, um método e o reconhecimento que você merece.
+    <footer className="bg-[#2c6b67] text-white">
+      <div className="container mx-auto max-w-5xl py-16 px-4 text-center">
+        <h3 className="text-3xl md:text-4xl font-bold">Fisio de Valor — por Carla Gutschow</h3>
+        <p className="mt-4 text-lg text-teal-200 max-w-2xl mx-auto">
+          O seu próximo nível profissional começa aqui. Chega de ser subvalorizado. É hora de construir o reconhecimento que você merece.
         </p>
         <div className="mt-10">
-          <a
-            href="#cta"
-            className="bg-white text-[#2c6b67] font-bold py-4 px-10 rounded-lg text-lg hover:bg-gray-200 transition-all inline-block"
-          >
-            QUERO ME INSCREVER AGORA
-          </a>
+           <a
+              href="#cta"
+              className="bg-[#FFC700] text-black font-bold py-4 px-10 rounded-lg text-lg hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg inline-block"
+            >
+              QUERO FAZER PARTE DESSA JORNADA
+            </a>
         </div>
-        <div className="mt-16 border-t border-gray-600 pt-8">
-          <p className="text-gray-400">© {new Date().getFullYear()} Fisio de Valor por Carla Gutschow. Todos os direitos reservados.</p>
+        <div className="mt-16 border-t border-teal-600 pt-8">
+            <img src="/logo-white.png" alt="Fisio de Valor por Carla Gutschow Logo" className="h-10 mx-auto mb-4" />
+            <p className="text-sm text-teal-300">
+              © {new Date().getFullYear()} Fisio de Valor. Todos os direitos reservados.
+            </p>
         </div>
       </div>
     </footer>

@@ -7,14 +7,16 @@ import ParaQuemESection from './components/ParaQuemESection';
 import HowItWorksSection from './components/HowItWorksSection';
 import PromiseSection from './components/PromiseSection';
 import DepoimentoSection from './components/DepoimentoSection';
-import CtaSection from './components/CtaSection';
+import EventCtaSection from './components/EventCtaSection';
+// FIX: Import FaqSection component to be rendered on the page.
 import FaqSection from './components/FaqSection';
+import CtaSection from './components/CtaSection';
 import Footer from './components/Footer';
 import FloatingCta from './components/FloatingCta';
 
 const App: React.FC = () => {
   return (
-    <div className="bg-white text-[#514e4a] min-h-screen pb-20 md:pb-0">
+    <div className="bg-white text-gray-800 min-h-screen">
       <Header />
       <main>
         <Hero />
@@ -24,8 +26,10 @@ const App: React.FC = () => {
         <HowItWorksSection />
         <PromiseSection />
         <DepoimentoSection />
-        <CtaSection />
+        <EventCtaSection />
+        {/* FIX: Add FaqSection to the page to display frequently asked questions. */}
         <FaqSection />
+        <CtaSection />
       </main>
       <Footer />
       <FloatingCta />
